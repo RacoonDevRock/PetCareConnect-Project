@@ -1,10 +1,7 @@
 package com.petcareconnect.api.model;
 
 import jakarta.persistence.*;
-import lombok.AccessLevel;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 import lombok.experimental.FieldDefaults;
 
 import java.time.LocalDate;
@@ -15,6 +12,7 @@ import java.time.LocalDate;
 @FieldDefaults(level = AccessLevel.PRIVATE)
 @Entity
 @Table(name = "daily-activities")
+@Builder
 public class DailyActivities {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
