@@ -37,8 +37,11 @@ public class Owner {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "owner_id")
     Long ownerId;
+
+    @Column(unique = true)
     String username;
 //    @NonNull
+    @Column(unique = true)
     String email;
     String password;
 
