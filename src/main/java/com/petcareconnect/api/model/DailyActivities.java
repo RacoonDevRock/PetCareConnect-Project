@@ -25,4 +25,8 @@ public class DailyActivities {
     @Column(name = "activity_date")
     private LocalDate activityDate;
     private Integer duration;
+
+    @ManyToOne(targetEntity = Pet.class)
+    @JoinColumn(name = "pet_id")
+    private Pet pet;
 }

@@ -5,6 +5,8 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.util.List;
+
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
@@ -19,4 +21,20 @@ public class Owner {
     private String username;
     private String email;
     private String password;
+
+    @OneToMany(
+            targetEntity = Pet.class,
+            fetch = FetchType.LAZY,
+            cascade = CascadeType.ALL,
+            orphanRemoval = true
+    )
+    private List<Pet> petList;
+
+    @OneToMany(
+            targetEntity = Community.class,
+            fetch = FetchType.LAZY,
+            cascade = CascadeType.ALL,
+            orphanRemoval = true
+    )
+    private List<Community> communityList;
 }

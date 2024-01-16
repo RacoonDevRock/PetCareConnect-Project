@@ -25,4 +25,8 @@ public class Reminder {
     @Column(name = "reminder_date")
     private Date reminderDate;
     private String description;
+
+    @ManyToOne(targetEntity = Pet.class)
+    @JoinColumn(name = "pet_id")
+    private Pet pet;
 }

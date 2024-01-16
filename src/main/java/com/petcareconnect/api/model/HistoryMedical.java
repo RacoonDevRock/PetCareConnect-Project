@@ -25,4 +25,8 @@ public class HistoryMedical {
     @Column(name = "date_diagnosis")
     private Date dateDiagnosis;
     private String treatment;
+
+    @ManyToOne(targetEntity = Pet.class)
+    @JoinColumn(name = "pet_id")
+    private Pet pet;
 }

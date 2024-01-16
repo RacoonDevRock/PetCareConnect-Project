@@ -6,6 +6,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.util.Date;
+import java.util.List;
 
 @Data
 @AllArgsConstructor
@@ -26,4 +27,32 @@ public class Pet {
 
     @Column(name = "date_birth")
     private Date dateBirth;
+
+    @ManyToOne(targetEntity = Owner.class)
+    @JoinColumn(name = "owner_id")
+    private Owner owner;
+
+    @OneToMany(
+            targetEntity = HistoryMedical.class,
+            fetch = FetchType.LAZY,
+            cascade = CascadeType.ALL,
+            orphanRemoval = true
+    )
+    private List<HistoryMedical> historyMedicalList;
+
+    @OneToMany(
+            targetEntity = Reminder.class,
+            fetch = FetchType.LAZY,
+            cascade = CascadeType.ALL,
+            orphanRemoval = true
+    )
+    private List<Reminder> reminderList;
+
+    @OneToMany(
+            targetEntity = DailyActivities.class,
+            fetch = FetchType.LAZY,
+            cascade = CascadeType.ALL,
+            orphanRemoval = true
+    )
+    private List<DailyActivities> dailyActivitiesList;
 }
