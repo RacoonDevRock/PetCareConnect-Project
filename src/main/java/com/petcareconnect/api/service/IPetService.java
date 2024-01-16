@@ -8,7 +8,7 @@ import java.util.Optional;
 public interface IPetService {
 
     //    CRUD
-    Pet createPet(Pet Pet);
+    Pet createPet(Long ownerId, Pet Pet);
 
     Optional<Pet> getPetById(Long petId);
 
