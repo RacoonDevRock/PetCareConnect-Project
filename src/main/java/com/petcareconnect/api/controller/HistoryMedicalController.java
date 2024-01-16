@@ -39,7 +39,7 @@ public class HistoryMedicalController {
         return new ResponseEntity<>(medicalService.updateHistory(recordId, updateMedical), HttpStatus.CREATED);
     }
 
-    @DeleteMapping("/{recordId}")
+    @DeleteMapping("/deleteMedical/{recordId}")
     public void deleteMedical(@PathVariable Long recordId) {
         medicalService.deleteById(recordId);
     }
