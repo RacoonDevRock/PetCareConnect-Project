@@ -18,7 +18,7 @@ public class Community {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "post_id")
     private Long postId;
-//    TODO: private String content;
+    private String content;
 
     @Column(name = "ate_post")
     private Date datePost;
