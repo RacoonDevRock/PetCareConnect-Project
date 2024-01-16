@@ -32,27 +32,27 @@ public class Pet {
 //    @JoinColumn(name = "owner_id")
 //    private Owner owner;
 
-    @OneToMany(
-            targetEntity = HistoryMedical.class,
-            fetch = FetchType.LAZY,
-            cascade = CascadeType.ALL,
-            orphanRemoval = true
-    )
-    private List<HistoryMedical> historyMedicalList;
-
-    @OneToMany(
-            targetEntity = Reminder.class,
-            fetch = FetchType.LAZY,
-            cascade = CascadeType.ALL,
-            orphanRemoval = true
-    )
-    private List<Reminder> reminderList;
-
-    @OneToMany(
-            targetEntity = DailyActivities.class,
-            fetch = FetchType.LAZY,
-            cascade = CascadeType.ALL,
-            orphanRemoval = true
-    )
-    private List<DailyActivities> dailyActivitiesList;
+//    @OneToMany(
+//            targetEntity = HistoryMedical.class,
+//            fetch = FetchType.LAZY,
+//            cascade = CascadeType.ALL,
+//            orphanRemoval = true
+//    )
+//    private List<HistoryMedical> historyMedicalList;
+//
+//    @OneToMany(
+//            targetEntity = Reminder.class,
+//            fetch = FetchType.LAZY,
+//            cascade = CascadeType.ALL,
+//            orphanRemoval = true
+//    )
+//    private List<Reminder> reminderList;
+//
+//    @OneToMany(
+//            targetEntity = DailyActivity.class,
+//            fetch = FetchType.LAZY,
+//            cascade = CascadeType.ALL,
+//            orphanRemoval = true
+//    )
+//    private List<DailyActivity> dailyActivitiesList;
 }
