@@ -28,9 +28,9 @@ public class Pet {
     @Column(name = "date_birth")
     private Date dateBirth;
 
-//    @ManyToOne(targetEntity = Owner.class)
-//    @JoinColumn(name = "owner_id")
-//    private Owner owner;
+    @ManyToOne(targetEntity = Owner.class)
+    @JoinColumn(name = "owner_id")
+    private Owner owner;
 
 //    @OneToMany(
 //            targetEntity = HistoryMedical.class,
