@@ -22,19 +22,19 @@ public class Owner {
     private String email;
     private String password;
 
-    @OneToMany(
-            targetEntity = Pet.class,
-            fetch = FetchType.LAZY,
-            cascade = CascadeType.ALL,
-            orphanRemoval = true
-    )
-    private List<Pet> petList;
-
-    @OneToMany(
-            targetEntity = Community.class,
-            fetch = FetchType.LAZY,
-            cascade = CascadeType.ALL,
-            orphanRemoval = true
-    )
-    private List<Community> communityList;
+//    @OneToMany(
+//            targetEntity = Pet.class,
+//            fetch = FetchType.LAZY,
+//            cascade = CascadeType.ALL,
+//            orphanRemoval = true
+//    )
+//    private List<Pet> petList;
+//
+//    @OneToMany(
+//            targetEntity = Community.class,
+//            fetch = FetchType.LAZY,
+//            cascade = CascadeType.ALL,
+//            orphanRemoval = true
+//    )
+//    private List<Community> communityList;
 }

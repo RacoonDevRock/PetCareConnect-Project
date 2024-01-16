@@ -23,7 +23,7 @@ public class Community {
     @Column(name = "ate_post")
     private Date datePost;
 
-    @ManyToOne(targetEntity = Owner.class)
-    @JoinColumn(name = "owner_id")
-    private Owner owner;
+//    @ManyToOne(targetEntity = Owner.class)
+//    @JoinColumn(name = "owner_id")
+//    private Owner owner;
 }
