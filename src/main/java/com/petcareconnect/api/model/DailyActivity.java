@@ -12,7 +12,7 @@ import java.time.LocalDate;
 @NoArgsConstructor
 @Entity
 @Table(name = "daily_activities")
-public class DailyActivities {
+public class DailyActivity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -26,7 +26,7 @@ public class DailyActivities {
     private LocalDate activityDate;
     private Integer duration;
 
-    @ManyToOne(targetEntity = Pet.class)
-    @JoinColumn(name = "pet_id")
-    private Pet pet;
+//    @ManyToOne(targetEntity = Pet.class)
+//    @JoinColumn(name = "pet_id")
+//    private Pet pet;
 }
