@@ -20,7 +20,7 @@ public class Community {
     private Long postId;
     private String content;
 
-    @Column(name = "ate_post")
+    @Column(name = "date_post")
     private Date datePost;
 
 //    @ManyToOne(targetEntity = Owner.class)
