@@ -29,12 +29,8 @@ public class Owner {
             orphanRemoval = true
     )
     private List<Pet> petList;
-//
-//    @OneToMany(
-//            targetEntity = Community.class,
-//            fetch = FetchType.LAZY,
-//            cascade = CascadeType.ALL,
-//            orphanRemoval = true
-//    )
-//    private List<Community> communityList;
+
+    @ManyToOne(targetEntity = Community.class)
+    @JoinColumn(name = "post_id")
+    private Community community;
 }

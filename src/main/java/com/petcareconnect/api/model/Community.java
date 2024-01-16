@@ -6,6 +6,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.util.Date;
+import java.util.List;
 
 @Data
 @AllArgsConstructor
@@ -23,7 +24,11 @@ public class Community {
     @Column(name = "date_post")
     private Date datePost;
 
-//    @ManyToOne(targetEntity = Owner.class)
-//    @JoinColumn(name = "owner_id")
-//    private Owner owner;
+    @OneToMany(
+            targetEntity = Owner.class,
+            fetch = FetchType.LAZY,
+            cascade = CascadeType.ALL,
+            orphanRemoval = true
+    )
+    private List<Owner> owners;
 }
