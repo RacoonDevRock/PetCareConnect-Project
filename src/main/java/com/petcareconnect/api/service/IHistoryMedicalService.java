@@ -6,7 +6,7 @@ import java.util.List;
 import java.util.Optional;
 
 public interface IHistoryMedicalService {
-    HistoryMedical createHistoryMedical(HistoryMedical historyMedical);
+    HistoryMedical createHistoryMedical(Long petId, HistoryMedical historyMedical);
     Optional<HistoryMedical> getHistoryMedicalById(Long recordId);
     List<HistoryMedical> getAllHistories();
     HistoryMedical updateHistory(Long recordId, HistoryMedical updateMedical);

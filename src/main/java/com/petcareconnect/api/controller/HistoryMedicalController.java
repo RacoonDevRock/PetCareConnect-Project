@@ -19,9 +19,9 @@ public class HistoryMedicalController {
         this.medicalService = medicalService;
     }
 
-    @PostMapping("/create")
-    public ResponseEntity<HistoryMedical> createMedical(@RequestBody HistoryMedical historyMedical){
-        return new ResponseEntity<>(medicalService.createHistoryMedical(historyMedical), HttpStatus.CREATED);
+    @PostMapping("/create/{petId}")
+    public ResponseEntity<HistoryMedical> createMedical(@PathVariable Long petId, @RequestBody HistoryMedical historyMedical){
+        return new ResponseEntity<>(medicalService.createHistoryMedical(petId, historyMedical), HttpStatus.CREATED);
     }
 
     @GetMapping("/{recordId}")
