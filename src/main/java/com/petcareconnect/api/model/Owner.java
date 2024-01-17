@@ -28,9 +28,5 @@ public class Owner {
             cascade = CascadeType.ALL,
             orphanRemoval = true
     )
-    private List<Pet> petList;
-
-    @ManyToOne(targetEntity = Community.class)
-    @JoinColumn(name = "post_id")
-    private Community community;
+    private List<Pet> pets;
 }
