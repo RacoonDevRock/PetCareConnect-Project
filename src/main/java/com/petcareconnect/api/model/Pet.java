@@ -32,13 +32,8 @@ public class Pet {
     @JoinColumn(name = "owner_id")
     private Owner owner;
 
-    @OneToMany(
-            targetEntity = HistoryMedical.class,
-            fetch = FetchType.LAZY,
-            cascade = CascadeType.ALL,
-            orphanRemoval = true
-    )
-    private List<HistoryMedical> historyMedicals;
+    @OneToOne(mappedBy = "pet", cascade = CascadeType.ALL, orphanRemoval = true)
+    private HistoryMedical historyMedical;
 
 //    @OneToMany(
 //            targetEntity = Reminder.class,
@@ -47,12 +42,4 @@ public class Pet {
 //            orphanRemoval = true
 //    )
 //    private List<Reminder> reminderList;
-//
-//    @OneToMany(
-//            targetEntity = DailyActivity.class,
-//            fetch = FetchType.LAZY,
-//            cascade = CascadeType.ALL,
-//            orphanRemoval = true
-//    )
-//    private List<DailyActivity> dailyActivitiesList;
 }

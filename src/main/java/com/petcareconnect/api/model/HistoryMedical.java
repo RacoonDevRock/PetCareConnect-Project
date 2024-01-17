@@ -1,5 +1,6 @@
 package com.petcareconnect.api.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -26,7 +27,8 @@ public class HistoryMedical {
     private Date dateDiagnosis;
     private String treatment;
 
-    @ManyToOne(targetEntity = Pet.class)
-    @JoinColumn(name = "pet_id")
+    @OneToOne
+    @JoinColumn(name = "pet_id", unique = true)
+    @JsonIgnore
     private Pet pet;
 }
