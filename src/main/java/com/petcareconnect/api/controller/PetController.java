@@ -19,9 +19,9 @@ public class PetController {
         this.petService = petService;
     }
 
-    @PostMapping("/create")
-    public ResponseEntity<Pet> createPet(@RequestBody Pet pet) {
-        return new ResponseEntity<>(petService.createPet(pet), HttpStatus.CREATED);
+    @PostMapping("/create/{ownerId}")
+    public ResponseEntity<Pet> createPet(@PathVariable Long ownerId, @RequestBody Pet pet) {
+        return new ResponseEntity<>(petService.createPet(ownerId, pet), HttpStatus.CREATED);
     }
 
     @GetMapping("/{petId}")
