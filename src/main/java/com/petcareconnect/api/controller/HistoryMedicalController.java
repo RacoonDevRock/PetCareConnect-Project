@@ -2,6 +2,7 @@ package com.petcareconnect.api.controller;
 
 import com.petcareconnect.api.model.HistoryMedical;
 import com.petcareconnect.api.service.IHistoryMedicalService;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -9,6 +10,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+@Tag(name = "History Medical", description = "History Medical management APIs")
 @RestController
 @RequestMapping("/medical")
 public class HistoryMedicalController {
@@ -21,22 +23,20 @@ public class HistoryMedicalController {
 
     @PostMapping("/create/{petId}")
     public ResponseEntity<HistoryMedical> createMedical(@PathVariable Long petId, @RequestBody HistoryMedical historyMedical){
-        return new ResponseEntity<>(medicalService.createHistoryMedical(petId, historyMedical), HttpStatus.CREATED);
+        medicalService.createHistoryMedical(petId, historyMedical);
+        return ResponseEntity.ok(historyMedical);
     }
 
     @GetMapping("/{recordId}")
     public ResponseEntity<?> getMedicalById(@PathVariable Long recordId) {
-        return new ResponseEntity<>(medicalService.getHistoryMedicalById(recordId), HttpStatus.OK);
-    }
-
-    @GetMapping("/all")
-    public ResponseEntity<List<HistoryMedical>> getAllMedicals() {
-        return new ResponseEntity<>(medicalService.getAllHistories(), HttpStatus.OK);
+        medicalService.getHistoryMedicalById(recordId);
+        return ResponseEntity.ok("");
     }
 
     @PutMapping("/updatedMedical/{recordId}")
     public ResponseEntity<HistoryMedical> updateMedical(@PathVariable Long recordId, @RequestBody HistoryMedical updateMedical) {
-        return new ResponseEntity<>(medicalService.updateHistory(recordId, updateMedical), HttpStatus.CREATED);
+        medicalService.updateHistory(recordId, updateMedical);
+        return ResponseEntity.ok(updateMedical);
     }
 
     @DeleteMapping("/deleteMedical/{recordId}")

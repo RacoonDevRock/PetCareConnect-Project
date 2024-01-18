@@ -7,14 +7,13 @@ import java.util.Optional;
 
 public interface IPetService {
 
-    //    CRUD
     Pet createPet(Long ownerId, Pet Pet);
 
-    Optional<Pet> getPetById(Long petId);
+    Optional<Pet> getPetByName(String petName); // buscar por id o nombre
 
-    List<Pet> getAllPets();
+    List<Pet> getAllPetsByOwner(String username); // todos en base a un usuario nombre
 
-    Pet updatePet(Long petId, Pet updatedPet);
+    Pet updatePet(Long petId, Pet updatedPet); // por id o nombre
 
-    void deletePet(Long petId);
+    void deletePet(Long petId); // por id o nombre
 }

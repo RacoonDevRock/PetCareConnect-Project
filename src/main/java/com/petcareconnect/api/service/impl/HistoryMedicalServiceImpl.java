@@ -1,5 +1,7 @@
 package com.petcareconnect.api.service.impl;
 
+import com.petcareconnect.api.exception.NoResourceFoundException;
+import com.petcareconnect.api.exception.NoSuchElementException;
 import com.petcareconnect.api.model.HistoryMedical;
 import com.petcareconnect.api.model.Pet;
 import com.petcareconnect.api.repository.HistoryMedicalRepository;
@@ -8,7 +10,6 @@ import com.petcareconnect.api.service.IHistoryMedicalService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -31,19 +32,15 @@ public class HistoryMedicalServiceImpl implements IHistoryMedicalService {
             historyMedical.setPet(pet);
             return medicalRepository.save(historyMedical);
         } else {
-            // TODO: HANDLE EXCEPTION
-            return  null;
+            throw new NoResourceFoundException("Not found pet with ID: "+petId);
         }
     }
 
     @Override
     public Optional<HistoryMedical> getHistoryMedicalById(Long recordId) {
-        return medicalRepository.findById(recordId);
-    }
-
-    @Override
-    public List<HistoryMedical> getAllHistories() {
-        return medicalRepository.findAll();
+        return Optional.of(
+                medicalRepository.findById(recordId)
+                        .orElseThrow(() -> new NoResourceFoundException("Not founded record with ID: "+recordId)));
     }
 
     @Override
@@ -54,7 +51,7 @@ public class HistoryMedicalServiceImpl implements IHistoryMedicalService {
             updateMedical.setRecordId(existsMedical.get().getRecordId());
             return medicalRepository.save(updateMedical);
         } else {
-            return null;
+            throw new NoSuchElementException("Not found record with ID: " + recordId);
         }
     }
 

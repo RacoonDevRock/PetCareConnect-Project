@@ -1,5 +1,6 @@
 package com.petcareconnect.api.service.impl;
 
+import com.petcareconnect.api.exception.NoSuchElementException;
 import com.petcareconnect.api.model.Owner;
 import com.petcareconnect.api.repository.OwnerRepository;
 import com.petcareconnect.api.service.IOwnerService;
@@ -25,30 +26,21 @@ public class OwnerServiceImpl implements IOwnerService {
     }
 
     @Override
-    public Optional<Owner> getOwnerById(Long ownerId) {
-        return ownerRepository.findById(ownerId);
+    public Optional<Owner> viewProfile(Long ownerId) {
+        return Optional.of(
+                ownerRepository.findById(ownerId)
+                        .orElseThrow(() -> new NoSuchElementException("Not founded owner with ID:" + ownerId)));
     }
 
     @Override
-    public List<Owner> getAllOwners() {
-        return ownerRepository.findAll();
-    }
-
-    @Override
-    public Owner updateOwner(Long ownerId, Owner updatedOwner) {
-        Optional<Owner> existOwner =  ownerRepository.findById(ownerId);
+    public Owner updateProfile(Long ownerId, Owner updatedOwner) {
+        Optional<Owner> existOwner = ownerRepository.findById(ownerId);
 
         if (existOwner.isPresent()) {
             updatedOwner.setOwnerId(existOwner.get().ownerId);
             return ownerRepository.save(updatedOwner);
         } else {
-//            TODO: Make exception
-            return null;
+            throw new NoSuchElementException("Not founded owner with ID:" + ownerId);
         }
-    }
-
-    @Override
-    public void deleteOwner(Long ownerId) {
-        ownerRepository.deleteById(ownerId);
     }
 }

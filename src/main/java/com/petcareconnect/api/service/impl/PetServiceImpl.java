@@ -1,5 +1,7 @@
 package com.petcareconnect.api.service.impl;
 
+import com.petcareconnect.api.exception.NoResourceFoundException;
+import com.petcareconnect.api.exception.NoSuchElementException;
 import com.petcareconnect.api.model.Owner;
 import com.petcareconnect.api.model.Pet;
 import com.petcareconnect.api.repository.OwnerRepository;
@@ -31,19 +33,24 @@ public class PetServiceImpl implements IPetService {
             pet.setOwner(owner);
             return petRepository.save(pet);
         } else {
-            // TODO: HANDLE EXCEPTION
-            return  null;
+            throw new NoSuchElementException("Not founded owner with ID:" + ownerId);
         }
     }
 
     @Override
-    public Optional<Pet> getPetById(Long petId) {
-        return petRepository.findById(petId);
+    public Optional<Pet> getPetByName(String petName) {
+        return Optional.of(
+                petRepository.findPetByPetName(petName)
+                        .orElseThrow(() -> new NoResourceFoundException("Not founded pet with name: "+petName)));
     }
 
     @Override
-    public List<Pet> getAllPets() {
-        return petRepository.findAll();
+    public List<Pet> getAllPetsByOwner(String username) {
+        List<Pet> pets = petRepository.findPetsByOwnerUsername(username);
+        if (pets.isEmpty()) {
+            throw new NoResourceFoundException("No pets found for owner with username: " + username);
+        }
+        return pets;
     }
 
     @Override
@@ -55,8 +62,7 @@ public class PetServiceImpl implements IPetService {
             updatedPet.setOwner(existsPet.get().getOwner());
             return petRepository.save(updatedPet);
         } else {
-            // TODO: HANDLE EXCEPTION
-            return null;
+            throw new NoSuchElementException("Not founded pet with ID: " + petId);
         }
     }
 

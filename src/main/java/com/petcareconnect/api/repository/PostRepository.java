@@ -1,10 +1,9 @@
 package com.petcareconnect.api.repository;
 
-import com.petcareconnect.api.model.Owner;
+import com.petcareconnect.api.model.Post;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface OwnerRepository extends JpaRepository<Owner, Long> {
-    Owner findByUsername(String username);
+public interface PostRepository extends JpaRepository<Post, Long> {
 }
