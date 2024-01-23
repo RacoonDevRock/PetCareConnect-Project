@@ -18,16 +18,17 @@ public class Pet {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "pet_id")
+    @Column(name = "pet_id", nullable = false)
     private Long petId;
 
-    @Column(name = "pet_name")
+    @Column(name = "pet_name", nullable = false)
     private String petName;
 
     @Enumerated(EnumType.STRING)
     @Column(name = "specie", nullable = false)
     private Specie specie;
 
+    @Column(nullable = false)
     private String breed;
 
     @Column(name = "date_birth")
