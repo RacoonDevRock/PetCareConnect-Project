@@ -10,6 +10,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @Tag(name = "Owner", description = "Owner management APIs")
 @RestController
 @RequestMapping("/owner")
@@ -35,11 +37,17 @@ public class OwnerController {
 
     @GetMapping("/{ownerId}")
     public ResponseEntity<OwnerDTO> getOwnerId(@PathVariable Long ownerId) {
-        OwnerDTO ownerDTO = ownerService.viewProfile(ownerId)
+        OwnerDTO ownerDTO = ownerService.viewOwnerProfile(ownerId)
                 .map(OwnerDTO::fromEntity) // Convierte Owner a OwnerDTO
                 .orElseThrow(() -> new NoSuchElementException("Not found owner with ID:" + ownerId));
 
         return ResponseEntity.ok(ownerDTO);
+    }
+
+    @GetMapping("/myProfile/{ownerId}")
+    public ResponseEntity<Owner> viewMyProfile(@PathVariable Long ownerId) {
+        Owner owner = ownerService.viewProfile(ownerId);
+        return ResponseEntity.ok(owner);
     }
 
     @PutMapping("/updateOwner/{ownerId}")
@@ -52,5 +60,11 @@ public class OwnerController {
                 .build();
 
         return ResponseEntity.ok(ownerDTO);
+    }
+
+    @GetMapping("/all")
+    public ResponseEntity<List<Owner>> allOwners() {
+        List<Owner> owners = ownerService.findAll();
+        return ResponseEntity.ok(owners);
     }
 }

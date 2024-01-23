@@ -4,11 +4,10 @@ import com.petcareconnect.api.model.HistoryMedical;
 import com.petcareconnect.api.service.IHistoryMedicalService;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.List;
+import java.util.Optional;
 
 @Tag(name = "History Medical", description = "History Medical management APIs")
 @RestController
@@ -29,8 +28,8 @@ public class HistoryMedicalController {
 
     @GetMapping("/{recordId}")
     public ResponseEntity<?> getMedicalById(@PathVariable Long recordId) {
-        medicalService.getHistoryMedicalById(recordId);
-        return ResponseEntity.ok("");
+        Optional<HistoryMedical> historyMedical = medicalService.getHistoryMedicalById(recordId);
+        return ResponseEntity.ok(historyMedical);
     }
 
     @PutMapping("/updatedMedical/{recordId}")
@@ -40,7 +39,8 @@ public class HistoryMedicalController {
     }
 
     @DeleteMapping("/deleteMedical/{recordId}")
-    public void deleteMedical(@PathVariable Long recordId) {
+    public ResponseEntity<?> deleteMedical(@PathVariable Long recordId) {
         medicalService.deleteById(recordId);
+        return ResponseEntity.noContent().build();
     }
 }
