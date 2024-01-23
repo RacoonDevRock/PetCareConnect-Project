@@ -9,6 +9,7 @@ import com.petcareconnect.api.repository.PetRepository;
 import com.petcareconnect.api.service.IPetService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.Optional;
@@ -25,6 +26,7 @@ public class PetServiceImpl implements IPetService {
     }
 
     @Override
+    @Transactional
     public Pet createPet(Long ownerId, Pet pet) {
         Optional<Owner> ownerOptional = ownerRepository.findById(ownerId);
 
@@ -38,6 +40,7 @@ public class PetServiceImpl implements IPetService {
     }
 
     @Override
+    @Transactional(readOnly = true)
     public Optional<Pet> getPetByName(String petName) {
         return Optional.of(
                 petRepository.findPetByPetName(petName)
@@ -45,6 +48,7 @@ public class PetServiceImpl implements IPetService {
     }
 
     @Override
+    @Transactional(readOnly = true)
     public List<Pet> getAllPetsByOwner(String username) {
         List<Pet> pets = petRepository.findPetsByOwnerUsername(username);
         if (pets.isEmpty()) {
@@ -54,6 +58,7 @@ public class PetServiceImpl implements IPetService {
     }
 
     @Override
+    @Transactional
     public Pet updatePet(Long petId, Pet updatedPet) {
         Optional<Pet> existsPet = petRepository.findById(petId);
 
@@ -67,6 +72,7 @@ public class PetServiceImpl implements IPetService {
     }
 
     @Override
+    @Transactional
     public void deletePet(Long petId) {
         petRepository.deleteById(petId);
     }

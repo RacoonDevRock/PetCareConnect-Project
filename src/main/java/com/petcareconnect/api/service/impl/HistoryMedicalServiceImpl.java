@@ -9,6 +9,7 @@ import com.petcareconnect.api.repository.PetRepository;
 import com.petcareconnect.api.service.IHistoryMedicalService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Optional;
 
@@ -24,6 +25,7 @@ public class HistoryMedicalServiceImpl implements IHistoryMedicalService {
     }
 
     @Override
+    @Transactional
     public HistoryMedical createHistoryMedical(Long petId, HistoryMedical historyMedical) {
         Optional<Pet> petOptional = petRepository.findById(petId);
 
@@ -37,6 +39,7 @@ public class HistoryMedicalServiceImpl implements IHistoryMedicalService {
     }
 
     @Override
+    @Transactional(readOnly = true)
     public Optional<HistoryMedical> getHistoryMedicalById(Long recordId) {
         return Optional.of(
                 medicalRepository.findById(recordId)
@@ -44,6 +47,7 @@ public class HistoryMedicalServiceImpl implements IHistoryMedicalService {
     }
 
     @Override
+    @Transactional
     public HistoryMedical updateHistory(Long recordId, HistoryMedical updateMedical) {
         Optional<HistoryMedical> existsMedical = medicalRepository.findById(recordId);
 
@@ -56,6 +60,7 @@ public class HistoryMedicalServiceImpl implements IHistoryMedicalService {
     }
 
     @Override
+    @Transactional
     public void deleteById(Long recordId) {
         medicalRepository.deleteById(recordId);
     }
