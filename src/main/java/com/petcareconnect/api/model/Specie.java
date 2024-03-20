@@ -3,7 +3,7 @@ package com.petcareconnect.api.model;
 public enum Specie {
     DOG,
     CAT,
-    LORO,
+    PARROT,
     MONKEY,
     RABBIT,
     TURTLE

@@ -32,7 +32,8 @@ public class Owner {
             targetEntity = Pet.class,
             fetch = FetchType.LAZY,
             cascade = CascadeType.ALL,
-            orphanRemoval = true
+            orphanRemoval = true,
+            mappedBy = "owner"
     )
     private List<Pet> pets;
 }

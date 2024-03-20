@@ -34,8 +34,8 @@ public class Pet {
     @Column(name = "date_birth")
     private Date dateBirth;
 
-    @ManyToOne(targetEntity = Owner.class)
-    @JoinColumn(name = "owner_id")
+    @ManyToOne
+    @JoinColumn(name = "owner_id", nullable = false)
     @JsonIgnore
     private Owner owner;
 
@@ -43,7 +43,8 @@ public class Pet {
             targetEntity = HistoryMedical.class,
             fetch = FetchType.LAZY,
             cascade = CascadeType.ALL,
-            orphanRemoval = true
+            orphanRemoval = true,
+            mappedBy = "pet"
     )
     private List<HistoryMedical> historyMedicals;
 }

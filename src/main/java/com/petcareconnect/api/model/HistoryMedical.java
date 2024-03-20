@@ -27,7 +27,8 @@ public class HistoryMedical {
     private Date dateDiagnosis;
     private String treatment;
 
-    @ManyToOne(targetEntity = Pet.class)
-    @JoinColumn(name = "pet_id")
+    @ManyToOne
+    @JoinColumn(name = "pet_id", nullable = false)
+    @JsonIgnore
     private Pet pet;
 }
